@@ -5,7 +5,7 @@ addpath '../MatlabCode';
 N = 100;
 
 % unweighted points
-weights = ones(N);
+weights = ones(N, 1);
 
 flag_type = [1,2,3];
 
@@ -44,15 +44,15 @@ for i =1:n_test_pts
 end
 
 %flag_mean_dist should be less than test_dists
-sum(test_dists < flag_median_dist) %this should be 0
+sum(test_dists < flag_mean_dist) %this should be 0
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %the chordal flag median
-flag_median_est = chordal_flag_mean(flag_pts, weights);
+flag_median_est = chordal_flag_median(flag_pts, weights);
 
 %the objective function value for the chordal flag median
-flag_mean_dist = calculate_chordal_distance(flag_pts, flag_mean_est, flag_type, false);
+flag_median_dist = calculate_chordal_distance(flag_pts, flag_median_est, flag_type, false);
 
 %the objective values (median) for random test points
 test_dists = zeros(n_test_pts,1);
